@@ -7,14 +7,14 @@ import org.springframework.util.Assert;
 public class OTPGeneratorTest {
 
     @Test
-    public void OTPGenerator_generateSecret() {
+    public void OTPGenerator_generateSecretSucceed() {
 
         OTPGenerator otpGenerator = new OTPGenerator();
         Assertions.assertEquals(20, otpGenerator.generateSecretKey().length());
     }
 
     @Test
-    public void OTPGenerator_generateQRCode() {
+    public void OTPGenerator_generateQRCodeSucceed() {
         OTPGenerator otpGenerator = new OTPGenerator();
         String secretKey = otpGenerator.generateSecretKey();
         String qrCodeUri = otpGenerator.generateQRCode(secretKey);
@@ -23,7 +23,7 @@ public class OTPGeneratorTest {
     }
 
     @Test
-    public void OTPGenerator_generateHOTP() {
+    public void OTPGenerator_generateTOTPSucceed() {
 
         long unixTime = (System.currentTimeMillis() / 1000L);
         long timeAsCounter = unixTime / 30;
