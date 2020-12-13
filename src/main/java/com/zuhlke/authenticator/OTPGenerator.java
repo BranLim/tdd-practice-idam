@@ -1,9 +1,14 @@
 package com.zuhlke.authenticator;
 
+import org.apache.commons.codec.binary.Base32;
+
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
+
 
 public class OTPGenerator {
 
@@ -30,11 +35,21 @@ public class OTPGenerator {
             int offset = hash[19] & 0xf;
             int hashMac = (hash[offset++] & 0x7f) << 24 | (hash[offset++] & 0xff << 16) | (hash[offset++] & 0xff) << 8 | (hash[offset++] & 0xff);
             int otp = (hashMac % 1000000);
-            String finalOtp = Integer.toString(otp);
-            return finalOtp;
+            return Integer.toString(otp);
 
         } catch (Exception err) {
+            return "";
         }
-        return "";
+    }
+
+    public String generateQRCode(String secretKey) {
+        try{
+            Base32 base32 = new Base32();
+            return "otpauth://totp/" + URLEncoder.encode("example:brandon.lim@zuhlke.com", "UTF-8") +"?secret="
+                    + base32.encodeToString(secretKey.getBytes(StandardCharsets.US_ASCII))
+                    + "&Algorithm=HmacSHA256&digits=6";
+        }catch(UnsupportedEncodingException e){
+            return "";
+        }
     }
 }
