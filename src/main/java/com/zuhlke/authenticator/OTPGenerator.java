@@ -47,7 +47,7 @@ public class OTPGenerator {
             Base32 base32 = new Base32();
             return "otpauth://totp/" + URLEncoder.encode("example:brandon.lim@zuhlke.com", "UTF-8") +"?secret="
                     + base32.encodeToString(secretKey.getBytes(StandardCharsets.US_ASCII))
-                    + "&Algorithm=HmacSHA256&digits=6";
+                    + "&algorithm=HmacSHA256&digits=6";
         }catch(UnsupportedEncodingException e){
             return "";
         }
