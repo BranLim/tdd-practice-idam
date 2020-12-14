@@ -45,9 +45,9 @@ public class OTPGenerator {
     public String generateQRCode(String secretKey) {
         try{
             Base32 base32 = new Base32();
-            return "otpauth://totp/" + URLEncoder.encode("example:brandon.lim@zuhlke.com", "UTF-8") +"?secret="
+            return "otpauth://totp/" + URLEncoder.encode("Example:brandon.lim@zuhlke.com?secret=", "UTF-8")
                     + base32.encodeToString(secretKey.getBytes(StandardCharsets.US_ASCII))
-                    + "&algorithm=HmacSHA256&digits=6";
+                    + URLEncoder.encode("&algorithm=HmacSHA256&digits=6", "UTF-8");
         }catch(UnsupportedEncodingException e){
             return "";
         }
