@@ -42,7 +42,7 @@ public class OTPGenerator {
         }
     }
 
-    public String generateQRCode(User user, String secretKey) {
+    public String generateTotpKeyUri(User user, String secretKey) {
         try{
             Base32 base32 = new Base32();
             return "otpauth://totp/" + URLEncoder.encode("Example:"+user.getUserEmail(), "UTF-8").replace(".", "%2E").replace("+","%20")

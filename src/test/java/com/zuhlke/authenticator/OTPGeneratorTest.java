@@ -13,17 +13,17 @@ public class OTPGeneratorTest {
     }
 
     @Test
-    public void OTPGenerator_generateQRCodeSucceed() {
+    public void OTPGenerator_generateTotpKeyUriSucceed() {
         String secretKey = "zuhlkeempoweringidea";
         User user = new User("testuser1", "testuser1@example.com", "test123");
         OTPGenerator otpGenerator = new OTPGenerator();
 
-        String qrCodeUri = otpGenerator.generateQRCode(user, secretKey);
-        Assertions.assertTrue(qrCodeUri.contains("otpauth://totp/Example%3Atestuser1%40example%2Ecom%3Fsecret%3DPJ2WQ3DLMVSW24DPO5SXE2LOM5UWIZLB"));
+        String totpKeyUri = otpGenerator.generateTotpKeyUri(user, secretKey);
+        Assertions.assertTrue(totpKeyUri.contains("otpauth://totp/Example%3Atestuser1%40example%2Ecom%3Fsecret%3DPJ2WQ3DLMVSW24DPO5SXE2LOM5UWIZLB"));
     }
 
     @Test
-    public void OTPGenerator_generateTOTPSucceed() {
+    public void OTPGenerator_generateSixDigitTOTPSucceed() {
 
         long unixTime = (System.currentTimeMillis() / 1000L);
         long timeAsCounter = unixTime / 30;

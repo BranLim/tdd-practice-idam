@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 public class UserTest {
 
     @Test
-    public void UserAccount_setupOtpSuccess(){
+    public void UserAccount_setupUser2FASucceed(){
         UserService userService = new UserService();
-        String qrCode = userService.setupOtp(new User("TestUser1", "TestUser1@domain.com", "TestPassword"));
-        Assertions.assertTrue(qrCode.contains("otpauth://totp/Example%3ATestUser1%40domain%2Ecom%3Fsecret%3D"));
+        String totpKeyUri = userService.setup2FA(new User("TestUser1", "TestUser1@domain.com", "TestPassword"));
+        Assertions.assertTrue(totpKeyUri.contains("otpauth://totp/Example%3ATestUser1%40domain%2Ecom%3Fsecret%3D"));
     }
 
     @Test
