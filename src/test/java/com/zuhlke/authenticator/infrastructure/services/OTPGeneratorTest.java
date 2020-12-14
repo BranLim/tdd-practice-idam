@@ -1,5 +1,6 @@
-package com.zuhlke.authenticator;
+package com.zuhlke.authenticator.infrastructure.services;
 
+import com.zuhlke.authenticator.domain.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

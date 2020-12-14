@@ -1,4 +1,4 @@
-package com.zuhlke.authenticator;
+package com.zuhlke.authenticator.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 public class UserTest {
 
     @Test
-    public void setupUser2FASucceed(){
-        UserService userService = new UserService();
-        String totpKeyUri = userService.setup2FA(new User("TestUser1", "TestUser1@domain.com", "TestPassword"));
+    public void setupUser2FASucceed() {
+        User user = new User("TestUser1", "TestUser1@domain.com", "TestPassword");
+        String totpKeyUri = user.setup2FA(new UserService());
         Assertions.assertTrue(totpKeyUri.contains("otpauth://totp/Example%3ATestUser1%40domain%2Ecom%3Fsecret%3D"));
     }
 

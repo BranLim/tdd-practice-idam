@@ -1,4 +1,4 @@
-package com.zuhlke.authenticator;
+package com.zuhlke.authenticator.domain;
 
 public class User {
     private final String userPassword;
@@ -25,5 +25,9 @@ public class User {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String setup2FA(UserService userService) {
+        return userService.setup2FA(this);
     }
 }

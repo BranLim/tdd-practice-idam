@@ -1,4 +1,6 @@
-package com.zuhlke.authenticator;
+package com.zuhlke.authenticator.domain;
+
+import com.zuhlke.authenticator.infrastructure.services.OTPGenerator;
 
 public class UserService {
 

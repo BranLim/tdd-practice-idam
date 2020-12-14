@@ -1,5 +1,6 @@
-package com.zuhlke.authenticator;
+package com.zuhlke.authenticator.infrastructure.services;
 
+import com.zuhlke.authenticator.domain.User;
 import org.apache.commons.codec.binary.Base32;
 
 import javax.crypto.Mac;
