@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 public class OTPGeneratorTest {
 
     @Test
-    public void OTPGenerator_generateSecretSucceed() {
+    public void generateSecretOf20CharactersSucceed() {
 
         OTPGenerator otpGenerator = new OTPGenerator();
         Assertions.assertEquals(20, otpGenerator.generateSecretKey().length());
     }
 
     @Test
-    public void OTPGenerator_generateTotpKeyUriSucceed() {
+    public void generateTotpKeyUriSucceed() {
         String secretKey = "zuhlkeempoweringidea";
         User user = new User("testuser1", "testuser1@example.com", "test123");
         OTPGenerator otpGenerator = new OTPGenerator();
@@ -23,7 +23,7 @@ public class OTPGeneratorTest {
     }
 
     @Test
-    public void OTPGenerator_generateSixDigitTOTPSucceed() {
+    public void generateSixDigitTOTPSucceed() {
 
         long unixTime = (System.currentTimeMillis() / 1000L);
         long timeAsCounter = unixTime / 30;
