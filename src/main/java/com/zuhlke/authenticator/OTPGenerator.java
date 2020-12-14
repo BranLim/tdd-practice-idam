@@ -42,11 +42,11 @@ public class OTPGenerator {
         }
     }
 
-    public String generateQRCode(String secretKey) {
+    public String generateQRCode(User user, String secretKey) {
         try{
             Base32 base32 = new Base32();
-            return "otpauth://totp/" + URLEncoder.encode("Example:brandon.lim@zuhlke.com?secret=", "UTF-8")
-                    + base32.encodeToString(secretKey.getBytes(StandardCharsets.US_ASCII))
+            return "otpauth://totp/" + URLEncoder.encode("Example:"+user.getUserEmail(), "UTF-8").replace(".", "%2E").replace("+","%20")
+                    + URLEncoder.encode("?secret=" + base32.encodeToString(secretKey.getBytes(StandardCharsets.US_ASCII)), "UTF-8").replace("+","%20")
                     + URLEncoder.encode("&algorithm=HmacSHA256&digits=6", "UTF-8");
         }catch(UnsupportedEncodingException e){
             return "";
