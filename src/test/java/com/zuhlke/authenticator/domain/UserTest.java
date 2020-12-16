@@ -8,7 +8,7 @@ public class UserTest {
     @Test
     public void setupUser2FASucceed() {
         User user = new User("TestUser1", "TestUser1@domain.com", "TestPassword");
-        String totpKeyUri = user.setup2FA(new UserService());
+        String totpKeyUri = user.setup2FA("example", new UserService());
         Assertions.assertTrue(totpKeyUri.contains("otpauth://totp/example%3ATestUser1@domain.com?secret="));
     }
 

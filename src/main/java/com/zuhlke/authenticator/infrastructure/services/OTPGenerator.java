@@ -43,14 +43,19 @@ public class OTPGenerator {
         }
     }
 
-    public String generateTotpKeyUri(User user, String secretKey) {
-        try{
+    public String generateTotpKeyUri(String issuer, User user, String secretKey) {
+        if (issuer == null || issuer.isBlank()) {
+            throw new IllegalArgumentException("issuer is missing");
+        }
+        try {
             Base32 base32 = new Base32();
-            return "otpauth://totp/" + URLEncoder.encode("Example:"+user.getUserEmail(), "UTF-8").replace(".", "%2E").replace("+","%20")
-                    + URLEncoder.encode("?secret=" + base32.encodeToString(secretKey.getBytes(StandardCharsets.US_ASCII)), "UTF-8").replace("+","%20")
-                    + URLEncoder.encode("&algorithm=HmacSHA256&digits=6", "UTF-8");
-        }catch(UnsupportedEncodingException e){
+            return "otpauth://totp/" + URLEncoder.encode(issuer, "UTF-8") + "%3A" + user.getUserEmail()
+                    + "?secret=" + base32.encodeToString(secretKey.getBytes(StandardCharsets.US_ASCII))
+                    + "&issuer=" + issuer
+                    + "&algorithm=HmacSHA256&digits=6";
+        } catch (UnsupportedEncodingException e) {
             return "";
         }
+
     }
 }
