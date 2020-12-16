@@ -24,4 +24,17 @@ public class UserTest {
         UserService userService = new UserService();
         Assertions.assertThrows(IllegalArgumentException.class, () -> userService.registerUser("", "brandon.lim@zuhlke", "password"));
     }
+
+    @Test
+    public void createUserErrorWhenPasswordNotProvided(){
+        UserService userService = new UserService();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.registerUser("Brandon", "brandon.lim@zuhlke", null));
+    }
+
+    @Test
+    public void userChangeEmailSucceed() {
+        User user = new User("John", "john@example.com", "testing");
+        user.changeEmail("john1@example.com");
+        Assertions.assertEquals("john1@example.com", user.getUserEmail());
+    }
 }

@@ -1,13 +1,17 @@
 package com.zuhlke.authenticator.domain;
 
 public class User {
-    private final String userPassword;
-    private final String userEmail;
-    private final String userName;
+
+    private String userPassword;
+    private String userEmail;
+    private String userName;
 
     public User(String userName, String userEmail, String userPassword) {
         if (userName == null || userName.isBlank()) {
             throw new IllegalArgumentException("missing username");
+        }
+        if (userPassword == null || userPassword.isBlank()) {
+            throw new IllegalArgumentException("missing password");
         }
         this.userName = userName;
         this.userEmail = userEmail;
@@ -27,7 +31,11 @@ public class User {
         return userName;
     }
 
-    public String setup2FA(UserService userService) {
-        return userService.setup2FA(this);
+    public String setup2FA(String issuer, UserService userService) {
+        return userService.setup2FA(issuer, this);
+    }
+
+    public void changeEmail(String newEmail) {
+        userEmail = newEmail;
     }
 }
