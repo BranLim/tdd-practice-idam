@@ -9,7 +9,7 @@ public class QRCodeGeneratorTest {
 
     @Test
     public void generateTotpQRCodeSucceed() {
-        String totpKeyUri = "otpauth://totp/Example%3Atestuser1%40example%2Ecom%3Fsecret%3DPJ2WQ3DLMVSW24DPO5SXE2LOM5UWIZLB";
+        String totpKeyUri = "otpauth://totp/ZuhlkeTest%3Atestuser1@ZuhlkeTest.com?secret=PJ2WQ3DLMVSW24DPO5SXE2LOM5UWIZLB&issuer=ZuhlkeTest";
         int width = 256;
         int height = 256;
         String filePath = "test.png";
