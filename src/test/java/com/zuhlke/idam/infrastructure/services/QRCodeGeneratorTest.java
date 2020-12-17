@@ -1,4 +1,4 @@
-package com.zuhlke.authenticator.infrastructure.services;
+package com.zuhlke.idam.infrastructure.services;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

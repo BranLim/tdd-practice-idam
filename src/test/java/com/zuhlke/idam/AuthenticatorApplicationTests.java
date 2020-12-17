@@ -1,4 +1,4 @@
-package com.zuhlke.authenticator;
+package com.zuhlke.idam;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

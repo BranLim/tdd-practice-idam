@@ -1,4 +1,4 @@
-package com.zuhlke.authenticator.infrastructure.services;
+package com.zuhlke.idam.infrastructure.services;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
