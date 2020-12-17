@@ -1,8 +1,14 @@
-package com.zuhlke.authenticator.domain;
+package com.zuhlke.idam.domain;
 
-import com.zuhlke.authenticator.infrastructure.services.OTPGenerator;
+import com.zuhlke.idam.infrastructure.services.OTPGenerator;
 
 public class UserService {
+
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public String setup2FA(String issuer, User user) {
         OTPGenerator otpGenerator = new OTPGenerator();
@@ -12,6 +18,6 @@ public class UserService {
 
     public User registerUser(String userName, String userEmail, String userPassword) {
 
-        return new User(userName, userEmail, userPassword);
+        return new User(userRepository.nextId(),userName, userEmail, userPassword);
     }
 }

@@ -1,8 +1,11 @@
-package com.zuhlke.authenticator.infrastructure.services;
+package com.zuhlke.idam.infrastructure.services;
 
-import com.zuhlke.authenticator.domain.User;
+import com.zuhlke.idam.domain.User;
+import com.zuhlke.idam.domain.UserRepository;
+import com.zuhlke.idam.infrastructure.persistence.MockUserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 public class OTPGeneratorTest {
 
@@ -16,7 +19,9 @@ public class OTPGeneratorTest {
     @Test
     public void generateTotpKeyUriSucceed() {
         String secretKey = "zuhlkeempoweringidea";
-        User user = new User("testuser1", "testuser1@example.com", "test123");
+
+        UserRepository userRepository = new MockUserRepository();
+        User user = new User(userRepository.nextId(), "testuser1", "testuser1@example.com", "test123");
         OTPGenerator otpGenerator = new OTPGenerator();
 
         String totpKeyUri = otpGenerator.generateTotpKeyUri("example", user, secretKey);
@@ -26,7 +31,10 @@ public class OTPGeneratorTest {
     @Test
     public void errorWhenGenerateTotpKeyWithoutIssuer() {
         String secretKey = "zuhlkeempoweringidea";
-        User user = new User("testuser1", "testuser1@example.com", "test123");
+
+        UserRepository userRepository = new MockUserRepository();
+
+        User user = new User(userRepository.nextId(), "testuser1", "testuser1@example.com", "test123");
         OTPGenerator otpGenerator = new OTPGenerator();
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             otpGenerator.generateTotpKeyUri(null, user, secretKey);
