@@ -36,6 +36,7 @@ public class IdentityApplicationServiceTest {
 
         RegisterUserCommand registerUserCommand = new RegisterUserCommand(username, password, email);
         String userId = applicationService.registerUser(registerUserCommand);
+
         Assertions.assertNotNull(userRepository.findById(userId));
     }
 
