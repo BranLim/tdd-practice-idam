@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 
 
-public class OTPGenerator {
+public class MFAService {
 
     public String generateTOTP(String generatedSecretKey, long timeAsCounter) {
         try {

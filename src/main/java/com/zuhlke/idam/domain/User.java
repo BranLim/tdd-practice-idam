@@ -1,6 +1,6 @@
 package com.zuhlke.idam.domain;
 
-import com.zuhlke.idam.infrastructure.services.OTPGenerator;
+import com.zuhlke.idam.infrastructure.services.MFAService;
 
 public class User {
 
@@ -36,10 +36,10 @@ public class User {
         return userName;
     }
 
-    public MFAResult setupMFA(String issuer, PasswordService passwordService, OTPGenerator otpGenerator) {
+    public MFAResult setupMFA(String issuer, PasswordService passwordService, MFAService MFAService) {
 
         secretKey = passwordService.generateSecretKeyForTotp();
-        String mfaQrUri =  otpGenerator.generateTotpKeyUri(issuer, this, secretKey);
+        String mfaQrUri =  MFAService.generateTotpKeyUri(issuer, this, secretKey);
 
         MFAResult setupResult = new MFAResult(mfaQrUri, secretKey);
         return setupResult;

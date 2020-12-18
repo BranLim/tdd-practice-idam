@@ -6,9 +6,8 @@ import com.zuhlke.idam.domain.UserRepository;
 import com.zuhlke.idam.infrastructure.persistence.MockUserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
-public class OTPGeneratorTest {
+public class MFAServiceTest {
 
 
 
@@ -18,9 +17,9 @@ public class OTPGeneratorTest {
 
         UserRepository userRepository = new MockUserRepository();
         User user = new User(userRepository.nextId(), "testuser1", "testuser1@example.com", "test123");
-        OTPGenerator otpGenerator = new OTPGenerator();
+        MFAService MFAService = new MFAService();
 
-        String totpKeyUri = otpGenerator.generateTotpKeyUri("example", user, secretKey);
+        String totpKeyUri = MFAService.generateTotpKeyUri("example", user, secretKey);
         Assertions.assertTrue(totpKeyUri.contains("otpauth://totp/example%3Atestuser1@example.com?secret=PJ2WQ3DLMVSW24DPO5SXE2LOM5UWIZLB"));
     }
 
@@ -31,9 +30,9 @@ public class OTPGeneratorTest {
         UserRepository userRepository = new MockUserRepository();
 
         User user = new User(userRepository.nextId(), "testuser1", "testuser1@example.com", "test123");
-        OTPGenerator otpGenerator = new OTPGenerator();
+        MFAService MFAService = new MFAService();
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            otpGenerator.generateTotpKeyUri(null, user, secretKey);
+            MFAService.generateTotpKeyUri(null, user, secretKey);
         });
     }
 
@@ -43,8 +42,8 @@ public class OTPGeneratorTest {
         long unixTime = (System.currentTimeMillis() / 1000L);
         long timeAsCounter = unixTime / 30;
         PasswordService passwordService = new PasswordService();
-        OTPGenerator otpGenerator = new OTPGenerator();
-        String otp = otpGenerator.generateTOTP(passwordService.generateSecretKeyForTotp(), timeAsCounter);
+        MFAService MFAService = new MFAService();
+        String otp = MFAService.generateTOTP(passwordService.generateSecretKeyForTotp(), timeAsCounter);
         Assertions.assertEquals(6, otp.length());
     }
 }

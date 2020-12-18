@@ -1,7 +1,7 @@
 package com.zuhlke.idam.domain;
 
 import com.zuhlke.idam.infrastructure.persistence.MockUserRepository;
-import com.zuhlke.idam.infrastructure.services.OTPGenerator;
+import com.zuhlke.idam.infrastructure.services.MFAService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ public class UserTest {
         UserRepository userRepository = new MockUserRepository();
 
         User user = new User(userRepository.nextId(), "TestUser1", "TestUser1@domain.com", "TestPassword");
-        MFAResult totpKeyUri = user.setupMFA("example", new PasswordService(), new OTPGenerator());
+        MFAResult totpKeyUri = user.setupMFA("example", new PasswordService(), new MFAService());
         Assertions.assertTrue(totpKeyUri.getKeyUri().contains("otpauth://totp/example%3ATestUser1@domain.com?secret="));
     }
 
