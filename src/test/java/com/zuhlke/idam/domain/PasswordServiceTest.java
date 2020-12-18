@@ -12,4 +12,11 @@ public class PasswordServiceTest {
         PasswordService passwordService = new PasswordService();
         Assertions.assertTrue(passwordService.isShort(password));
     }
+
+    @Test
+    public void generateSecretOf20CharactersForTotpSucceed() {
+
+        PasswordService passwordService = new PasswordService();
+        Assertions.assertEquals(20, passwordService.generateSecretKeyForTotp().length());
+    }
 }

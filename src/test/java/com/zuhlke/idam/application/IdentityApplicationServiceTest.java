@@ -1,7 +1,9 @@
 package com.zuhlke.idam.application;
 
 import com.zuhlke.idam.application.command.RegisterUserCommand;
+import com.zuhlke.idam.application.command.SetupMFACommand;
 import com.zuhlke.idam.domain.AuthenticatedUser;
+import com.zuhlke.idam.domain.MFAResult;
 import com.zuhlke.idam.domain.UserRepository;
 import com.zuhlke.idam.infrastructure.persistence.MockUserRepository;
 import org.junit.jupiter.api.Assertions;
@@ -60,11 +62,11 @@ public class IdentityApplicationServiceTest {
         Assertions.assertEquals("1", authenticatedUser.getId());
         Assertions.assertEquals(username, authenticatedUser.getUsername());
     }
-		
-		@Test
-		public void registeredUserSetupMFASuccess() {
 
-				String username = "testuser1";
+    @Test
+    public void registeredUserSetupMFASuccess() {
+
+        String username = "testuser1";
         String password = "password123";
         String email = "testuser1@example.com";
 
@@ -74,11 +76,11 @@ public class IdentityApplicationServiceTest {
 
         RegisterUserCommand registerUserCommand = new RegisterUserCommand(username, password, email);
         String userId = applicationService.registerUser(registerUserCommand);
-				
-				SetupMFACommand setup2faCommand = new SetupMFACommand(userId);
-				MFASetupResult result = applicationService.setupMFA(setup2faCommand)
-				
-				Assertions.assertNotNull(result);
-				
-		}
+
+        SetupMFACommand setup2faCommand = new SetupMFACommand(userId);
+        MFAResult result = applicationService.setupMFA(setup2faCommand);
+
+        Assertions.assertNotNull(result);
+
+    }
 }

@@ -1,10 +1,9 @@
 package com.zuhlke.idam.application;
 
 import com.zuhlke.idam.application.command.RegisterUserCommand;
-import com.zuhlke.idam.domain.AuthenticatedUser;
-import com.zuhlke.idam.domain.User;
-import com.zuhlke.idam.domain.UserRepository;
-import com.zuhlke.idam.domain.UserService;
+import com.zuhlke.idam.application.command.SetupMFACommand;
+import com.zuhlke.idam.domain.*;
+import com.zuhlke.idam.infrastructure.services.OTPGenerator;
 
 public class IdentityApplicationService {
 
@@ -27,5 +26,13 @@ public class IdentityApplicationService {
 
         return createdUser.getId();
 
+    }
+
+    public MFAResult setupMFA(SetupMFACommand setupMfaCommand) {
+        User user = userRepository.findById(setupMfaCommand.getUserId());
+        PasswordService passwordService = new PasswordService();
+        OTPGenerator otpGenerator = new OTPGenerator();
+        MFAResult result = user.setupMFA("idam",passwordService, otpGenerator);
+        return result;
     }
 }

@@ -1,11 +1,14 @@
 package com.zuhlke.idam.domain;
 
+import com.zuhlke.idam.infrastructure.services.OTPGenerator;
+
 public class User {
 
     private String userPassword;
     private String userEmail;
     private String userName;
     private String id;
+    private String secretKey;
 
     public User(String id, String userName, String userEmail, String userPassword) {
         if (userName == null || userName.isBlank()) {
@@ -33,8 +36,13 @@ public class User {
         return userName;
     }
 
-    public String setup2FA(String issuer, UserService userService) {
-        return userService.setup2FA(issuer, this);
+    public MFAResult setupMFA(String issuer, PasswordService passwordService, OTPGenerator otpGenerator) {
+
+        secretKey = passwordService.generateSecretKeyForTotp();
+        String mfaQrUri =  otpGenerator.generateTotpKeyUri(issuer, this, secretKey);
+
+        MFAResult setupResult = new MFAResult(mfaQrUri, secretKey);
+        return setupResult;
     }
 
     public void changeEmail(String newEmail) {
