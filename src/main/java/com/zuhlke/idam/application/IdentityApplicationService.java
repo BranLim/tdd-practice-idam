@@ -2,6 +2,7 @@ package com.zuhlke.idam.application;
 
 import com.zuhlke.idam.application.command.RegisterUserCommand;
 import com.zuhlke.idam.application.command.SetupMFACommand;
+import com.zuhlke.idam.domain.AuthenticationResult;
 import com.zuhlke.idam.domain.*;
 import com.zuhlke.idam.infrastructure.services.MFAService;
 
@@ -13,9 +14,11 @@ public class IdentityApplicationService {
         this.userRepository = userRepository;
     }
 
-    public AuthenticatedUser login(String username, String password) {
+    public AuthenticationResult login(String username, String password) {
         AuthenticationService authenticationService = new AuthenticationService(userRepository);
-        return authenticationService.authenticate(username, password);
+        AuthenticationResult authenticationResult = authenticationService.authenticate(username, password);
+
+        return authenticationResult;
     }
 
     public String registerUser(RegisterUserCommand registerUserCommand) {
@@ -32,7 +35,7 @@ public class IdentityApplicationService {
         User user = userRepository.findById(setupMfaCommand.getUserId());
         PasswordService passwordService = new PasswordService();
         MFAService MFAService = new MFAService();
-        MFAResult result = user.setupMFA("idam",passwordService, MFAService);
+        MFAResult result = user.setupMFA("idam", passwordService, MFAService);
         return result;
     }
 }
