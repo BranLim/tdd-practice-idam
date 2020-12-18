@@ -26,6 +26,20 @@ public class IdentityApplicationServiceTest {
     }
 
     @Test
+    public void registeredUserFoundInRepository() {
+        String username = "testuser1";
+        String password = "password123";
+        String email = "testuser1@example.com";
+
+        UserRepository userRepository = new MockUserRepository();
+        IdentityApplicationService applicationService = new IdentityApplicationService(userRepository);
+
+        RegisterUserCommand registerUserCommand = new RegisterUserCommand(username, password, email);
+        String userId = applicationService.registerUser(registerUserCommand);
+        Assertions.assertNotNull(userRepository.findById(userId));
+    }
+
+    @Test
     public void registeredUserLoginSuccess() {
 
         String username = "testuser1";
