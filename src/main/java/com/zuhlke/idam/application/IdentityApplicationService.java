@@ -24,7 +24,7 @@ public class IdentityApplicationService {
     public String registerUser(RegisterUserCommand registerUserCommand) {
 
         UserService userService = new UserService(userRepository);
-        User createdUser = userService.registerUser(registerUserCommand.getUsername(), registerUserCommand.getEmail(), registerUserCommand.getPassword());
+        User createdUser = userService.registerUser(registerUserCommand.getUsername(), registerUserCommand.getEmail(), new String(registerUserCommand.getPassword()));
         userRepository.add(createdUser);
 
         return createdUser.getId();

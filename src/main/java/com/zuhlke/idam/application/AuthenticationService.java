@@ -1,9 +1,6 @@
 package com.zuhlke.idam.application;
 
-import com.zuhlke.idam.domain.AuthenticatedUser;
-import com.zuhlke.idam.domain.AuthenticationResult;
-import com.zuhlke.idam.domain.User;
-import com.zuhlke.idam.domain.UserRepository;
+import com.zuhlke.idam.domain.*;
 
 public class AuthenticationService {
     private final UserRepository userRepository;
@@ -17,11 +14,15 @@ public class AuthenticationService {
         if (foundUser == null) {
             return new AuthenticationResult(true, "no such user");
         }
-        if (foundUser.getUserPassword().equals(password)) {
+        PasswordService passwordService = new PasswordService();
+
+        if (passwordService.match(password,foundUser.getUserPassword())) {
             AuthenticatedUser authenticatedUser = new AuthenticatedUser(foundUser.getId(), foundUser.getUserName(), foundUser.getUserEmail());
             AuthenticationResult authenticationResult = new AuthenticationResult(authenticatedUser);
             return authenticationResult;
+        } else {
+            return new AuthenticationResult(true, "invalid password");
         }
-        return null;
+
     }
 }

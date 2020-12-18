@@ -28,7 +28,6 @@ public class IdentityApplicationServiceTest extends ApplicationServiceTest {
         Assertions.assertEquals("1", newUserId);
     }
 
-
     @Test
     public void registeredUserLoginSuccess() {
 

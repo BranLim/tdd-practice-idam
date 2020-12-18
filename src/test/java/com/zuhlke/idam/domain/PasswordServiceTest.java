@@ -10,7 +10,7 @@ public class PasswordServiceTest {
         char[] password ={'1','2','3','4','5','6'};
 
         PasswordService passwordService = new PasswordService();
-        Assertions.assertTrue(passwordService.isShort(password));
+        Assertions.assertTrue(passwordService.isShort(new String(password)));
     }
 
     @Test
