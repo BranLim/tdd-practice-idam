@@ -60,4 +60,25 @@ public class IdentityApplicationServiceTest {
         Assertions.assertEquals("1", authenticatedUser.getId());
         Assertions.assertEquals(username, authenticatedUser.getUsername());
     }
+		
+		@Test
+		public void registeredUserSetupMFASuccess() {
+
+				String username = "testuser1";
+        String password = "password123";
+        String email = "testuser1@example.com";
+
+        UserRepository userRepository = new MockUserRepository();
+
+        IdentityApplicationService applicationService = new IdentityApplicationService(userRepository);
+
+        RegisterUserCommand registerUserCommand = new RegisterUserCommand(username, password, email);
+        String userId = applicationService.registerUser(registerUserCommand);
+				
+				SetupMFACommand setup2faCommand = new SetupMFACommand(userId);
+				MFASetupResult result = applicationService.setupMFA(setup2faCommand)
+				
+				Assertions.assertNotNull(result);
+				
+		}
 }
