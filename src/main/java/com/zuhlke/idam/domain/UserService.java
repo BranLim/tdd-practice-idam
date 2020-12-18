@@ -18,6 +18,12 @@ public class UserService {
 
     public User registerUser(String userName, String userEmail, String userPassword) {
 
-        return new User(userRepository.nextId(),userName, userEmail, userPassword);
+        PasswordService passwordService = new PasswordService();
+        if (passwordService.isShort(userPassword)) {
+            throw new IllegalArgumentException("password should be more than 7 characters");
+        }
+        User user = new User(userRepository.nextId(), userName, userEmail, userPassword);
+
+        return user;
     }
 }

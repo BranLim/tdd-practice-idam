@@ -18,7 +18,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void createUserErrorWhenUserNameNotProvided() {
+    public void registerUserErrorWhenUserNameNotProvided() {
         UserRepository userRepository = new MockUserRepository();
 
         UserService userService = new UserService(userRepository);
@@ -26,11 +26,19 @@ public class UserServiceTest {
     }
 
     @Test
-    public void createUserErrorWhenPasswordNotProvided() {
+    public void registerUserErrorWhenPasswordNotProvided() {
 
         UserRepository userRepository = new MockUserRepository();
 
         UserService userService = new UserService(userRepository);
         Assertions.assertThrows(IllegalArgumentException.class, () -> userService.registerUser("Brandon", "brandon.lim@zuhlke", null));
+    }
+
+    @Test
+    public void registerUserErrorWhenPasswordLengthLessThan8() {
+        UserRepository userRepository = new MockUserRepository();
+
+        UserService userService = new UserService(userRepository);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.registerUser("Brandon", "brandon.lim@zuhlke", "pass"), "password should be more than 7 characters");
     }
 }
