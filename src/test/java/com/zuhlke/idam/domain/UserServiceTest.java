@@ -31,7 +31,7 @@ public class UserServiceTest {
         UserRepository userRepository = new MockUserRepository();
 
         UserService userService = new UserService(userRepository);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.registerUser("Brandon", "brandon.lim@zuhlke", null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.registerUser("Brandon", "brandon.lim@zuhlke", null), "password is missing");
     }
 
     @Test
