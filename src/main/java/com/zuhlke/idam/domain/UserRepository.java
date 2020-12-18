@@ -7,4 +7,6 @@ public interface UserRepository {
      User findById(String userId);
 
      void add(User user );
+
+    User findByUsername(String username);
 }

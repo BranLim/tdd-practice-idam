@@ -4,6 +4,7 @@ import com.zuhlke.idam.domain.User;
 import com.zuhlke.idam.domain.UserRepository;
 
 import java.util.HashMap;
+
 public class MockUserRepository implements UserRepository {
 
     private HashMap<String, User> store;
@@ -26,3 +27,9 @@ public class MockUserRepository implements UserRepository {
     public void add(User user) {
         store.put(user.getId(), user);
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return store.values().stream().filter(u->u.getUserName().equals(username)).findFirst().get();
+    }
+}

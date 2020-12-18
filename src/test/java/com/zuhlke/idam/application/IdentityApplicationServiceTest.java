@@ -43,14 +43,20 @@ public class IdentityApplicationServiceTest {
     public void registeredUserLoginSuccess() {
 
         String username = "testuser1";
-        String password = "password";
+        String password = "password123";
+        String email = "testuser1@example.com";
 
         UserRepository userRepository = new MockUserRepository();
 
         IdentityApplicationService applicationService = new IdentityApplicationService(userRepository);
+
+        RegisterUserCommand registerUserCommand = new RegisterUserCommand(username, password, email);
+        applicationService.registerUser(registerUserCommand);
+
         AuthenticatedUser authenticatedUser = applicationService.login(username, password);
 
         Assertions.assertNotNull(authenticatedUser);
-        Assertions.assertEquals(username,authenticatedUser.getUsername());
+        Assertions.assertEquals("1", authenticatedUser.getId());
+        Assertions.assertEquals(username, authenticatedUser.getUsername());
     }
 }

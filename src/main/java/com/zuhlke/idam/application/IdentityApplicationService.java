@@ -15,7 +15,8 @@ public class IdentityApplicationService {
     }
 
     public AuthenticatedUser login(String username, String password) {
-        return new AuthenticatedUser(username,null);
+        AuthenticationService authenticationService = new AuthenticationService(userRepository);
+        return authenticationService.authenticate(username, password);
     }
 
     public String registerUser(RegisterUserCommand registerUserCommand) {
