@@ -13,20 +13,6 @@ import java.security.SecureRandom;
 
 public class OTPGenerator {
 
-
-    public String generateSecretKey() {
-
-        SecureRandom secureRandom = new SecureRandom();
-        int leftLimit = 48;
-        int rightLimit = 122;
-        String secretKey = secureRandom.ints(leftLimit, rightLimit + 1)
-                .limit(20)
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
-        return secretKey;
-
-    }
-
     public String generateTOTP(String generatedSecretKey, long timeAsCounter) {
         try {
             String algo = "HmacSHA256";

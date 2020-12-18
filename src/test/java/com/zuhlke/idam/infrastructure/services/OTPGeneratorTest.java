@@ -1,5 +1,6 @@
 package com.zuhlke.idam.infrastructure.services;
 
+import com.zuhlke.idam.domain.PasswordService;
 import com.zuhlke.idam.domain.User;
 import com.zuhlke.idam.domain.UserRepository;
 import com.zuhlke.idam.infrastructure.persistence.MockUserRepository;
@@ -9,12 +10,7 @@ import org.mockito.Mock;
 
 public class OTPGeneratorTest {
 
-    @Test
-    public void generateSecretOf20CharactersSucceed() {
 
-        OTPGenerator otpGenerator = new OTPGenerator();
-        Assertions.assertEquals(20, otpGenerator.generateSecretKey().length());
-    }
 
     @Test
     public void generateTotpKeyUriSucceed() {
@@ -46,8 +42,9 @@ public class OTPGeneratorTest {
 
         long unixTime = (System.currentTimeMillis() / 1000L);
         long timeAsCounter = unixTime / 30;
+        PasswordService passwordService = new PasswordService();
         OTPGenerator otpGenerator = new OTPGenerator();
-        String otp = otpGenerator.generateTOTP(otpGenerator.generateSecretKey(), timeAsCounter);
+        String otp = otpGenerator.generateTOTP(passwordService.generateSecretKeyForTotp(), timeAsCounter);
         Assertions.assertEquals(6, otp.length());
     }
 }
