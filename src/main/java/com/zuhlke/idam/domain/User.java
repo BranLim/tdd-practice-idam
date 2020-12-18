@@ -4,17 +4,17 @@ import com.zuhlke.idam.infrastructure.services.MFAService;
 
 public class User {
 
-    private String userPassword;
+    private char[] userPassword;
     private String userEmail;
     private String userName;
     private String id;
     private String secretKey;
 
-    public User(String id, String userName, String userEmail, String userPassword) {
+    public User(String id, String userName, String userEmail, char[] userPassword) {
         if (userName == null || userName.isBlank()) {
             throw new IllegalArgumentException("missing username");
         }
-        if (userPassword == null || userPassword.isBlank()) {
+        if (userPassword == null || userPassword.length==0) {
             throw new IllegalArgumentException("missing password");
         }
         this.id = id;
@@ -24,7 +24,7 @@ public class User {
     }
 
 
-    public String getUserPassword() {
+    public char[] getUserPassword() {
         return userPassword;
     }
 

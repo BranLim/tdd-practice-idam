@@ -17,7 +17,7 @@ public class IdentityApplicationServiceTest extends ApplicationServiceTest {
     public void registerUserAndSaveToRepositorySuccess() {
 
         String username = "testuser1";
-        String password = "password";
+        char[] password = {'p','a','s','s','w','o','r','d'};
         String email = "testuser1@example.com";
 
         UserRepository userRepository = new MockUserRepository();

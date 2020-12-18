@@ -7,7 +7,7 @@ public class PasswordServiceTest {
 
     @Test
     public void passwordIsShortWhenLengthLessThan8() {
-        String password ="123456";
+        char[] password ={'1','2','3','4','5','6'};
 
         PasswordService passwordService = new PasswordService();
         Assertions.assertTrue(passwordService.isShort(password));

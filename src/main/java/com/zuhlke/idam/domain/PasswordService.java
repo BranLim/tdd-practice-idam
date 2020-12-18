@@ -4,8 +4,8 @@ import java.security.SecureRandom;
 
 public class PasswordService {
 
-    public boolean isShort(String password) {
-        return password.length() < 8;
+    public boolean isShort(char[] password) {
+        return password.length < 8;
     }
 
     public String generateSecretKeyForTotp(){

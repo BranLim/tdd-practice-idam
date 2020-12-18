@@ -9,9 +9,9 @@ public class UserService {
     }
 
 
-    public User registerUser(String userName, String userEmail, String userPassword) {
+    public User registerUser(String userName, String userEmail, char[] userPassword) {
 
-        if (userPassword==null || userPassword.isBlank()){
+        if (userPassword==null || userPassword.length==0){
             throw new IllegalArgumentException("password is missing");
         }
         PasswordService passwordService = new PasswordService();

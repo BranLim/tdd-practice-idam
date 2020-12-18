@@ -1,11 +1,11 @@
 package com.zuhlke.idam.application.command;
 
 public class RegisterUserCommand {
-    private final String password;
+    private final char[] password;
     private final String username;
     private String email;
 
-    public RegisterUserCommand(String username, String password, String email) {
+    public RegisterUserCommand(String username, char[] password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -15,7 +15,7 @@ public class RegisterUserCommand {
         return username;
     }
 
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
