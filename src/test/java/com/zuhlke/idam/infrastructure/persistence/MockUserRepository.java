@@ -4,6 +4,7 @@ import com.zuhlke.idam.domain.User;
 import com.zuhlke.idam.domain.UserRepository;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 public class MockUserRepository implements UserRepository {
 
@@ -30,6 +31,10 @@ public class MockUserRepository implements UserRepository {
 
     @Override
     public User findByUsername(String username) {
-        return store.values().stream().filter(u->u.getUserName().equals(username)).findFirst().get();
+        Optional<User> foundUser =  store.values().stream().filter(u->u.getUserName().equals(username)).findFirst();
+        if (foundUser.isPresent()){
+            return foundUser.get();
+        }
+        return null;
     }
 }
