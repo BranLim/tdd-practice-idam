@@ -7,17 +7,20 @@ import com.zuhlke.idam.domain.MFAResult;
 import com.zuhlke.idam.domain.User;
 import com.zuhlke.idam.domain.UserRepository;
 import com.zuhlke.idam.infrastructure.persistence.MockUserRepository;
+import org.apache.commons.codec.binary.Base32;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.nio.charset.StandardCharsets;
 
 public class IdentityApplicationServiceTest extends ApplicationServiceTest {
 
 
     @Test
-    public void registerUserAndSaveToRepositorySuccess() {
+    public void successWhenUserIsRegisteredAndSavedToRepository() {
 
         String username = "testuser1";
-        char[] password = {'p','a','s','s','w','o','r','d'};
+        char[] password = {'p', 'a', 's', 's', 'w', 'o', 'r', 'd'};
         String email = "testuser1@example.com";
 
         UserRepository userRepository = new MockUserRepository();
@@ -29,7 +32,7 @@ public class IdentityApplicationServiceTest extends ApplicationServiceTest {
     }
 
     @Test
-    public void registeredUserLoginSuccess() {
+    public void successWhenRegisteredUserLoginWithValidUsernameAndPassword() {
 
         String username = "testuser1";
         String password = "password123";
@@ -81,7 +84,7 @@ public class IdentityApplicationServiceTest extends ApplicationServiceTest {
     }
 
     @Test
-    public void registeredUserSetupMFASuccess() {
+    public void successWhenRegisteredUserReceivedValidToTpUriWhileSettingUpMFA() {
 
         User user = this.testUser();
 
@@ -92,8 +95,14 @@ public class IdentityApplicationServiceTest extends ApplicationServiceTest {
         IdentityApplicationService applicationService = new IdentityApplicationService(userRepository);
         MFAResult result = applicationService.setupMFA(setup2faCommand);
 
+        Base32 base32 = new Base32();
+        String validTotp = "otpauth://totp/idam%3Atestuser1@example.com"
+                + "?secret=" + base32.encodeToString(result.getSecretKey().getBytes(StandardCharsets.US_ASCII))
+                + "&issuer=idam&algorithm=HmacSHA256&digits=6";
         Assertions.assertNotNull(result);
+        Assertions.assertEquals(validTotp, result.getKeyUri());
 
     }
+
 
 }
