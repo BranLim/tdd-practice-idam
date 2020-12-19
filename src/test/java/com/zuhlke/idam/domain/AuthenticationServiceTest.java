@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class AuthenticationServiceTest {
 
     @Test
-    public void enteredPasswordMatchStoredPassword() {
+    public void authenticationSuccessWhenEnteredPasswordMatchStoredPassword() {
 
         PasswordService passwordService = new PasswordService();
         String encrypted = passwordService.protect("tester123");
@@ -20,11 +20,11 @@ public class AuthenticationServiceTest {
         AuthenticationResult authenticationResult = authenticationService.authenticate("testuser2","tester123");
 
         Assertions.assertNotNull(authenticationResult);
-        Assertions.assertFalse(authenticationResult.failed(), "authentication failed");
+        Assertions.assertFalse(authenticationResult.failed());
     }
 
     @Test
-    public void enteredPasswordDontMatchStoredPassword() {
+    public void authenticationFailedWhenEnteredPasswordDontMatchStoredPassword() {
         PasswordService passwordService = new PasswordService();
         String encrypted = passwordService.protect("tester123");
 

@@ -65,6 +65,22 @@ public class IdentityApplicationServiceTest extends ApplicationServiceTest {
     }
 
     @Test
+    public void errorWhenLoginWithIncorrectPassword() {
+        String username = "testuser1";
+        String password = "password";
+
+        User user = this.testUser();
+
+        UserRepository userRepository = new MockUserRepository();
+        userRepository.add(user);
+        IdentityApplicationService applicationService = new IdentityApplicationService(userRepository);
+        AuthenticationResult authenticationResult = applicationService.login(username, password);
+
+        Assertions.assertTrue(authenticationResult.failed());
+        Assertions.assertEquals("invalid password", authenticationResult.getMessage());
+    }
+
+    @Test
     public void registeredUserSetupMFASuccess() {
 
         User user = this.testUser();
