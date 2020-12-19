@@ -12,7 +12,7 @@ public class MFAServiceTest {
 
 
     @Test
-    public void generateTotpKeyUriSucceed() {
+    public void successWhenTotpkeyUriIsGenerated() {
         String secretKey = "zuhlkeempoweringidea";
 
         UserRepository userRepository = new MockUserRepository();
