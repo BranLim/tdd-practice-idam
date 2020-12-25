@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zuhlke</groupId>
-    <artifactId>authenticator</artifactId>
+    <artifactId>idam</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>authenticator</name>
-    <description>Demo project for Spring Boot</description>
+    <name>IdamApp</name>
+    <description>IDAM</description>
 
     <properties>
         <java.version>11</java.version>
