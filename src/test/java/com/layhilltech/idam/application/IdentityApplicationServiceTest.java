@@ -1,12 +1,12 @@
-package com.zuhlke.idam.application;
+package com.layhilltech.idam.application;
 
-import com.zuhlke.idam.application.command.RegisterUserCommand;
-import com.zuhlke.idam.application.command.SetupMFACommand;
-import com.zuhlke.idam.domain.AuthenticationResult;
-import com.zuhlke.idam.domain.MFAResult;
-import com.zuhlke.idam.domain.User;
-import com.zuhlke.idam.domain.UserRepository;
-import com.zuhlke.idam.infrastructure.persistence.MockUserRepository;
+import com.layhilltech.idam.application.command.RegisterUserCommand;
+import com.layhilltech.idam.application.command.SetupMFACommand;
+import com.layhilltech.idam.domain.AuthenticationResult;
+import com.layhilltech.idam.domain.MFAResult;
+import com.layhilltech.idam.domain.User;
+import com.layhilltech.idam.domain.UserRepository;
+import com.layhilltech.idam.infrastructure.persistence.MockUserRepository;
 import org.apache.commons.codec.binary.Base32;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

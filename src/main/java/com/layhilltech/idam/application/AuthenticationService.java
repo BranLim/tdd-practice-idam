@@ -1,6 +1,6 @@
-package com.zuhlke.idam.application;
+package com.layhilltech.idam.application;
 
-import com.zuhlke.idam.domain.*;
+import com.layhilltech.idam.domain.*;
 
 public class AuthenticationService {
     private final UserRepository userRepository;

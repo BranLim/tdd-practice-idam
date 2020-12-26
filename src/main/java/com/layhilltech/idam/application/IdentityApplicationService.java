@@ -1,10 +1,9 @@
-package com.zuhlke.idam.application;
+package com.layhilltech.idam.application;
 
-import com.zuhlke.idam.application.command.RegisterUserCommand;
-import com.zuhlke.idam.application.command.SetupMFACommand;
-import com.zuhlke.idam.domain.AuthenticationResult;
-import com.zuhlke.idam.domain.*;
-import com.zuhlke.idam.infrastructure.services.MFAService;
+import com.layhilltech.idam.application.command.RegisterUserCommand;
+import com.layhilltech.idam.domain.*;
+import com.layhilltech.idam.application.command.SetupMFACommand;
+import com.layhilltech.idam.infrastructure.services.MFAService;
 
 public class IdentityApplicationService {
 

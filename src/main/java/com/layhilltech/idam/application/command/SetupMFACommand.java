@@ -1,4 +1,4 @@
-package com.zuhlke.idam.application.command;
+package com.layhilltech.idam.application.command;
 
 public class SetupMFACommand {
 	

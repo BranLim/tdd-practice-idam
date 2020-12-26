@@ -1,7 +1,5 @@
 package com.layhilltech.idam.domain;
 
-import java.util.Collection;
-
 public class MFAResult {
     private final String mfaQrUri;
     private final String secretKey;

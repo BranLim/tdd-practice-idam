@@ -1,6 +1,6 @@
-package com.zuhlke.idam.application;
+package com.layhilltech.idam.application;
 
-import com.zuhlke.idam.domain.User;
+import com.layhilltech.idam.domain.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class ApplicationServiceTest {
