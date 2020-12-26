@@ -1,6 +1,4 @@
-package com.zuhlke.idam.domain;
-
-import com.zuhlke.idam.domain.AuthenticatedUser;
+package com.layhilltech.idam.domain;
 
 public class AuthenticationResult {
     private AuthenticatedUser authenticatedUser;

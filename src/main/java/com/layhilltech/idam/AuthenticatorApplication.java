@@ -1,4 +1,4 @@
-package com.zuhlke.idam;
+package com.layhilltech.idam;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

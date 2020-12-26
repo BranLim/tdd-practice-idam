@@ -1,4 +1,4 @@
-package com.zuhlke.idam;
+package com.layhilltech.idam;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

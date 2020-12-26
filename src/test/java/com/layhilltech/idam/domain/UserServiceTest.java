@@ -1,6 +1,6 @@
-package com.zuhlke.idam.domain;
+package com.layhilltech.idam.domain;
 
-import com.zuhlke.idam.infrastructure.persistence.MockUserRepository;
+import com.layhilltech.idam.infrastructure.persistence.MockUserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

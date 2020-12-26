@@ -1,4 +1,4 @@
-package com.zuhlke.idam.domain;
+package com.layhilltech.idam.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

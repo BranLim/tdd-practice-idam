@@ -1,4 +1,4 @@
-package com.zuhlke.idam.infrastructure.services;
+package com.layhilltech.idam.infrastructure.services;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;

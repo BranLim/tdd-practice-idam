@@ -1,7 +1,7 @@
-package com.zuhlke.idam.infrastructure.persistence;
+package com.layhilltech.idam.infrastructure.persistence;
 
-import com.zuhlke.idam.domain.User;
-import com.zuhlke.idam.domain.UserRepository;
+import com.layhilltech.idam.domain.User;
+import com.layhilltech.idam.domain.UserRepository;
 
 import java.util.HashMap;
 import java.util.Optional;

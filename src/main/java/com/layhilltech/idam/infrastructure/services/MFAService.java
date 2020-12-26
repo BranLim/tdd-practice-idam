@@ -1,6 +1,6 @@
-package com.zuhlke.idam.infrastructure.services;
+package com.layhilltech.idam.infrastructure.services;
 
-import com.zuhlke.idam.domain.User;
+import com.layhilltech.idam.domain.User;
 import org.apache.commons.codec.binary.Base32;
 
 import javax.crypto.Mac;
@@ -8,7 +8,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.security.SecureRandom;
 
 
 public class MFAService {

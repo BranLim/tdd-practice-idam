@@ -1,4 +1,4 @@
-package com.zuhlke.idam.domain;
+package com.layhilltech.idam.domain;
 
 public class AuthenticatedUser {
 

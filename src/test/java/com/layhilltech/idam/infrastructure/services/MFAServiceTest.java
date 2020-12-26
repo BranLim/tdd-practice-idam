@@ -1,9 +1,9 @@
-package com.zuhlke.idam.infrastructure.services;
+package com.layhilltech.idam.infrastructure.services;
 
-import com.zuhlke.idam.domain.PasswordService;
-import com.zuhlke.idam.domain.User;
-import com.zuhlke.idam.domain.UserRepository;
-import com.zuhlke.idam.infrastructure.persistence.MockUserRepository;
+import com.layhilltech.idam.domain.User;
+import com.layhilltech.idam.domain.PasswordService;
+import com.layhilltech.idam.domain.UserRepository;
+import com.layhilltech.idam.infrastructure.persistence.MockUserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
